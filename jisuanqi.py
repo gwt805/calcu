@@ -87,7 +87,57 @@ class jisuanqi(QtWidgets.QWidget):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
+        self.pushButton_13.clicked.connect(self.num0)
+        self.pushButton.clicked.connect(self.num1)
+        self.pushButton_7.clicked.connect(self.num2)
+        self.pushButton_8.clicked.connect(self.num3)
+        self.pushButton_3.clicked.connect(self.num4)
+        self.pushButton_4.clicked.connect(self.num5)
+        self.pushButton_5.clicked.connect(self.num6)
+        self.pushButton_2.clicked.connect(self.num7)
+        self.pushButton_10.clicked.connect(self.num8)
+        self.pushButton_11.clicked.connect(self.num9)
+        self.pushButton_14.clicked.connect(self.numdian)
+        self.pushButton_6.clicked.connect(self.numjia)
+        self.pushButton_9.clicked.connect(self.numjian)
+        self.pushButton_12.clicked.connect(self.numcheng)
+        self.pushButton_16.clicked.connect(self.numchu)
+        self.pushButton_15.clicked.connect(self.numdengyu)
+    def num0(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '0')
+    def num1(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '1')
+    def num2(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '2')
+    def num3(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '3')
+    def num4(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '4')
+    def num5(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '5')
+    def num6(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '6')
+    def num7(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '7')
+    def num8(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '8')
+    def num9(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '9')
+    def numcheng(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '×')
+    def numchu(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '/')
+    def numdian(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '.')
+    def numjia(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '+')
+    def numjian(self):
+        self.textEdit.setText(self.textEdit.toPlainText() + '-')
+    def numdengyu(self):
+        try:
+            self.textEdit.setText(str(eval(self.textEdit.toPlainText().replace('×','*'))))
+        except:
+            self.textEdit.setText('输入有误，请重新输入')
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "计算器"))
