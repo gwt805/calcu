@@ -137,6 +137,7 @@ class Jisuanqi(QtWidgets.QWidget):
         if nnum == 'C':
             self.lineEdit.clear()
             self.textEdit.clear()
+            self.ji = '' # 这里需要在清空一下，否则会把之前的记录加进来
         elif nnum == '=':
             try:
                 tt = self.lineEdit.text()
