@@ -136,7 +136,7 @@ class Jisuanqi(QtWidgets.QWidget):
     def numss(self,nnum):
         if nnum == 'C':
             self.lineEdit.clear()
-            self.textEdit.clear()
+            #self.textEdit.clear()
             self.ji = '' # 这里需要在清空一下，否则会把之前的记录加进来
         elif nnum == '=':
             try:
