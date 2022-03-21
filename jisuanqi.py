@@ -1,114 +1,111 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'jisuanqi.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import (
+    QWidget,
+    QApplication,
+    QSizePolicy,
+    QVBoxLayout,
+    QGridLayout,
+    QLayout,
+    QPushButton,
+    QTextBrowser,
+    QLineEdit,
+    QSystemTrayIcon,
+    QMenu,
+    QAction,
+    QMessageBox
+)
 from PyQt5.QtWidgets import QDesktopWidget
 from PyQt5.QtGui import QIcon
+from PyQt5 import QtCore
+import img
 
-class Jisuanqi(QtWidgets.QWidget):
+class Jsq(QWidget):
     def __init__(self):
-        super(Jisuanqi,self).__init__()
-        self.setupUi(self)
-        self.retranslateUi(self)
-    def setupUi(self, jisuanqi):
-        jisuanqi.setObjectName("jisuanqi")
-        jisuanqi.resize(358, 372)
+        super().__init__()
+        self.setupUi()
+
+    def setupUi(self):
+        self.resize(358, 372)
         # fix window size
-        jisuanqi.setFixedWidth(300)
-        jisuanqi.setFixedHeight(300)
-        jisuanqi.setWindowIcon(QIcon('img/jsq.png'))
+        self.setFixedWidth(300)
+        self.setFixedHeight(300)
+        self.setWindowIcon(QIcon(':img/jsq_logo.svg'))
+        self.setWindowTitle('计算器')
         # let the window center
         screen = QDesktopWidget().screenGeometry()
-        jsq_size = self.geometry()
-        jisuanqi.move(int((screen.width() - jsq_size.width()) / 2) , int((screen.height() - jsq_size.height()) / 2))
+        window_size = self.geometry()
+        self.move(int((screen.width() - window_size.width()) / 2) , int((screen.height() - window_size.height()) / 2))
 
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        # sys tray
+        self.tray = QSystemTrayIcon()
+        self.tray.setIcon(QIcon(':img/jsq_logo.svg'))
+        showAction = QAction("&Show", self, triggered = self.Show)
+        quitAction = QAction("&Quit", self, triggered = self.close)
+        self.trayMenu = QMenu(self)
+        self.trayMenu.addAction(showAction)
+        self.trayMenu.addSeparator()
+        self.trayMenu.addAction(quitAction)
+        self.tray.setContextMenu(self.trayMenu)
+        self.tray.show()
+
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(jisuanqi.sizePolicy().hasHeightForWidth())
-        jisuanqi.setSizePolicy(sizePolicy)
-        self.verticalLayout = QtWidgets.QVBoxLayout(jisuanqi)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
+        sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+        self.setSizePolicy(sizePolicy)
+        self.verticalLayout = QVBoxLayout(self)
+        self.gridLayout_2 = QGridLayout()
+        self.gridLayout_2.setSizeConstraint(QLayout.SetNoConstraint)
         self.gridLayout_2.setHorizontalSpacing(3)
         self.gridLayout_2.setVerticalSpacing(6)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.pushButton_4 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_4 = QPushButton('5',self)
         self.gridLayout_2.addWidget(self.pushButton_4, 3, 1, 1, 1)
-        self.pushButton_2 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2 = QPushButton('7',self)
         self.gridLayout_2.addWidget(self.pushButton_2, 4, 0, 1, 1)
-        self.pushButton_6 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_6.setObjectName("pushButton_6")
+        self.pushButton_6 = QPushButton("+",self)
         self.gridLayout_2.addWidget(self.pushButton_6, 3, 3, 1, 1)
-        self.pushButton_3 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_3 = QPushButton("4",self)
         self.gridLayout_2.addWidget(self.pushButton_3, 3, 0, 1, 1)
-        self.pushButton_5 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_5 = QPushButton("6",self)
         self.gridLayout_2.addWidget(self.pushButton_5, 3, 2, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton.setObjectName("pushButton")
+        self.pushButton = QPushButton("1",self)
         self.gridLayout_2.addWidget(self.pushButton, 2, 0, 1, 1)
-        self.pushButton_7 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_7.setObjectName("pushButton_7")
+        self.pushButton_7 = QPushButton("2",self)
         self.gridLayout_2.addWidget(self.pushButton_7, 2, 1, 1, 1)
-        self.pushButton_8 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_8.setObjectName("pushButton_8")
+        self.pushButton_8 = QPushButton("3",self)
         self.gridLayout_2.addWidget(self.pushButton_8, 2, 2, 1, 1)
-        self.pushButton_9 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_9.setObjectName("pushButton_9")
+        self.pushButton_9 = QPushButton("-",self)
         self.gridLayout_2.addWidget(self.pushButton_9, 2, 3, 1, 1)
-        self.pushButton_10 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_10.setObjectName("pushButton_10")
+        self.pushButton_10 = QPushButton("8",self)
         self.gridLayout_2.addWidget(self.pushButton_10, 4, 1, 1, 1)
-        self.pushButton_12 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_12.setObjectName("pushButton_12")
+        self.pushButton_12 = QPushButton("×",self)
         self.gridLayout_2.addWidget(self.pushButton_12, 4, 3, 1, 1)
-        self.pushButton_11 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_11.setObjectName("pushButton_11")
+        self.pushButton_11 = QPushButton("9",self)
         self.gridLayout_2.addWidget(self.pushButton_11, 4, 2, 1, 1)
-        self.pushButton_13 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_13.setObjectName("pushButton_13")
+        self.pushButton_13 = QPushButton("0",self)
         self.gridLayout_2.addWidget(self.pushButton_13, 5, 0, 1, 1)
-        self.pushButton_14 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_14.setObjectName("pushButton_14")
+        self.pushButton_14 = QPushButton(".",self)
         self.gridLayout_2.addWidget(self.pushButton_14, 5, 1, 1, 1)
-        self.pushButton_17 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_17.setObjectName("pushButton_17")
+        self.pushButton_17 = QPushButton("(",self)
         self.gridLayout_2.addWidget(self.pushButton_17, 2, 4, 1, 1)
-        self.textEdit = QtWidgets.QTextBrowser(jisuanqi)
+        self.textEdit = QTextBrowser(self)
         self.textEdit.setEnabled(True)
-        self.textEdit.setObjectName("textEdit")
         self.gridLayout_2.addWidget(self.textEdit, 0, 0, 1, 5)
-        self.lineEdit = QtWidgets.QLineEdit(jisuanqi)
+        self.lineEdit = QLineEdit(self)
         self.lineEdit.setStyleSheet("")
-        self.lineEdit.setObjectName("lineEdit")
         self.lineEdit.setFocus()
         self.gridLayout_2.addWidget(self.lineEdit, 1, 0, 1, 5)
-        self.pushButton_18 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_18.setObjectName("pushButton_18")
+        self.pushButton_18 = QPushButton(")",self)
         self.gridLayout_2.addWidget(self.pushButton_18, 3, 4, 1, 1)
-        self.pushButton_19 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_19.setObjectName("pushButton_19")
+        self.pushButton_19 = QPushButton("C",self)
         self.gridLayout_2.addWidget(self.pushButton_19, 4, 4, 1, 1)
-        self.pushButton_16 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_16.setObjectName("pushButton_16")
+        self.pushButton_16 = QPushButton("/",self)
         self.gridLayout_2.addWidget(self.pushButton_16, 5, 4, 1, 1)
-        self.pushButton_15 = QtWidgets.QPushButton(jisuanqi)
-        self.pushButton_15.setObjectName("pushButton_15")
+        self.pushButton_15 = QPushButton("=",self)
         self.gridLayout_2.addWidget(self.pushButton_15, 5, 2, 1, 2)
         self.verticalLayout.addLayout(self.gridLayout_2)
 
-        self.retranslateUi(jisuanqi)
-        QtCore.QMetaObject.connectSlotsByName(jisuanqi)
         # mycode
         self.ji = '' # 多行文本框赋值用
         self.pushButton_13.clicked.connect(lambda:self.numss('0'))
@@ -132,6 +129,14 @@ class Jisuanqi(QtWidgets.QWidget):
         self.pushButton_19.setShortcut('escape')
         self.pushButton_15.clicked.connect(lambda:self.numss('='))
         self.lineEdit.returnPressed.connect(lambda:self.numss('='))
+        self.show()
+
+    def Show(self):
+        self.showNormal()
+        self.activateWindow()
+        self.setWindowFlags(QtCore.Qt.Window)
+        self.show()
+
 
     def numss(self,nnum):
         if nnum == 'C':
@@ -150,36 +155,20 @@ class Jisuanqi(QtWidgets.QWidget):
         else:
             self.lineEdit.setText(self.lineEdit.text() + nnum)
 
-    def retranslateUi(self, jisuanqi):
-        _translate = QtCore.QCoreApplication.translate
-        jisuanqi.setWindowTitle(_translate("jisuanqi", "计算器"))
-        self.pushButton_4.setText(_translate("jisuanqi", "5"))
-        self.pushButton_2.setText(_translate("jisuanqi", "7"))
-        self.pushButton_6.setText(_translate("jisuanqi", "+"))
-        self.pushButton_3.setText(_translate("jisuanqi", "4"))
-        self.pushButton_5.setText(_translate("jisuanqi", "6"))
-        self.pushButton.setText(_translate("jisuanqi", "1"))
-        self.pushButton_7.setText(_translate("jisuanqi", "2"))
-        self.pushButton_8.setText(_translate("jisuanqi", "3"))
-        self.pushButton_9.setText(_translate("jisuanqi", "-"))
-        self.pushButton_10.setText(_translate("jisuanqi", "8"))
-        self.pushButton_12.setText(_translate("jisuanqi", "×"))
-        self.pushButton_11.setText(_translate("jisuanqi", "9"))
-        self.pushButton_13.setText(_translate("jisuanqi", "0"))
-        self.pushButton_14.setText(_translate("jisuanqi", "."))
-        self.pushButton_17.setText(_translate("jisuanqi", "("))
-        self.pushButton_18.setText(_translate("jisuanqi", ")"))
-        self.pushButton_19.setText(_translate("jisuanqi", "C"))
-        self.pushButton_16.setText(_translate("jisuanqi", "/"))
-        self.pushButton_15.setText(_translate("jisuanqi", "="))
-
-
+    def closeEvent(self, event):
+        reply = QMessageBox(QMessageBox.Question, self.tr("提示"), self.tr("确定要退出吗?"), QMessageBox.NoButton, self)
+        yr_btn = reply.addButton(self.tr("是的我要退出"), QMessageBox.YesRole)
+        reply.addButton(self.tr("最小化到托盘"), QMessageBox.NoRole)
+        reply.exec_()
+        if reply.clickedButton() == yr_btn:
+            event.accept()
+        else:
+            event.ignore()
+            # 最小化到托盘
+            self.setWindowFlags(QtCore.Qt.SplashScreen | QtCore.Qt.FramelessWindowHint)
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
-    jisuanqi = QtWidgets.QWidget()
-    ui = Jisuanqi()
-    ui.setupUi(jisuanqi)
-    jisuanqi.show()
+    app = QApplication(sys.argv)
+    jisuanqi = Jsq()
     sys.exit(app.exec_())
 
